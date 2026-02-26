@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora 3D Print - Alejandro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Reset y body --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            height: 100vh;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+        }
+
+        /* --- Card principal --- */
+        .card {
+            background: rgba(0,0,0,0.85);
+            padding: 40px;
+            border-radius: 25px;
+            width: 420px;
+            text-align: center;
+            box-shadow: 0 0 50px #00fff0, 0 0 120px #00fff0 inset;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 30px #00fff0, 0 0 80px #00fff0 inset; }
+            100% { box-shadow: 0 0 50px #00fff0, 0 0 120px #00fff0 inset; }
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-size: 26px;
+            letter-spacing: 2px;
+            color: #00fff0;
+            text-shadow: 0 0 15px #00fff0;
+        }
+
+        input {
+            width: 90%;
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            box-shadow: 0 0 15px #00fff0;
+            transform: scale(1.05);
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: none;
+            background: #00fff0;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.4s;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: #00ccaa;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #00fff0;
+        }
+
+        .resultado {
+            margin-top: 25px;
+            font-size: 20px;
+            color: #ffed00;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { text-shadow: 0 0 5px #ffed00; }
+            100% { text-shadow: 0 0 20px #ffed00; }
+        }
+
+        /* Botón GitHub */
+        .github-btn {
+            margin-top: 20px;
+            background: #24292e;
+            color: #fff;
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.4s;
+        }
+
+        .github-btn:hover {
+            background: #3b4148;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00fff0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>⚡ Calculadora 3D Print ⚡</h1>
+    <form method="POST">
+        <input type="number" step="any" name="gramos" placeholder="Gramos del material" required>
+        <input type="number" step="any" name="precio" placeholder="Precio por KG (€)" required>
+        <input type="number" step="any" name="margen" placeholder="Margen de venta (ej: 2)" value="2" required>
+        <button type="submit">Calcular</button>
+    </form>
+
+    {% if coste is not none and venta is not none %}
+        <div class="resultado">
+            Coste de producción: {{ coste }} €<br>
+            Precio recomendado: {{ venta }} €
+        </div>
+    {% endif %}
+
+    <a href="https://github.com/alejandro2neocastalarm" target="_blank" class="github-btn">
+        🔗 Mi GitHub
+    </a>
+</div>
+
+</body>
+</html>
